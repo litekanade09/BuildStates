@@ -32,13 +32,30 @@ export function ContactForm() {
     e.preventDefault()
     setIsSending(true)
 
+    const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID
+    const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID
+    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+
+    if (!serviceId || !templateId || !publicKey) {
+      console.error("EmailJS environment variables are missing.")
+      alert("Configuration error: Email service is not properly set up.")
+      setIsSending(false)
+      return
+    }
+
     try {
       await emailjs.send(
-        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "",
-        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || "",
-        formData,
-        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || ""
-      )
+          serviceId,
+          templateId,
+                {
+    from_name: formData.name,
+    from_email: formData.email,
+    company_name: formData.company,  // Fixed
+    phone_number: formData.mobile,   // Fixed
+    message: formData.details,       // Fixed
+  },
+  publicKey
+)
       setIsSubmitted(true)
     } catch (error) {
       console.error("Failed to send email:", error)

@@ -6,29 +6,29 @@ import { Card, CardContent } from "@/components/ui/card"
 const phases = [
   {
     phase: "01",
-    title: "The Plot",
-    concept: "Your Idea",
+    title: "Your Idea Phase",
+    
     description:
       "We listen carefully to your ideas, analyze your goals, and understand your startup's vision to ensure every decision aligns with your business objectives.",
   },
   {
     phase: "02",
-    title: "Blueprint",
-    concept: "Design",
+    title: "Design Phase",
+    
     description:
       "We create clean layouts, intuitive navigation, and modern interfaces that align with your brand and guide users effortlessly.",
   },
   {
     phase: "03",
-    title: "Construction",
-    concept: "Development",
+    title: "Development Phase",
+    
     description:
       "We start building. Using reliable technologies and best practices, we develop fast, responsive, and scalable websites with strong technical foundations.",
   },
   {
     phase: "04",
-    title: "Scaling",
-    concept: "Growth",
+    title: "Growth Phase",
+    
     description:
       "We optimize your website for performance, usability, and growth helping you attract users, build trust, and turn your website into a long-term digital asset.",
   },
@@ -64,9 +64,7 @@ export function ConstructionPhases() {
                   </span>
 
                   {/* Concept */}
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-primary font-mono mb-3">
-                    {phase.concept} Phase
-                  </span>
+                  
 
                   {/* Title */}
                   <h3 className="font-display text-xl font-bold mb-4 leading-tight transition-colors group-hover:text-primary">
