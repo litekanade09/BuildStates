@@ -7,9 +7,11 @@ import { ArrowRight } from "lucide-react"
 
 export function Hero() {
   return (
-    <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+    <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-background/95">
       {/* Background blueprint grid */}
-      <div className="absolute inset-0 bg-blueprint opacity-20 pointer-events-none" />
+      <div className="absolute inset-0 bg-blueprint opacity-10 pointer-events-none" />
+      {/* Dark overlay for better text visibility */}
+      <div className="absolute inset-0 bg-black/40 pointer-events-none" />
 
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
         <div className="max-w-4xl mx-auto text-center">

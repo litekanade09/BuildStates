@@ -11,7 +11,7 @@ export function Navigation() {
       <div className="container mx-auto px-6 h-full flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 group">
           
-          <span className="font-mono text-5xl font-bold tracking-tighter uppercase">BuildStates</span>
+          <span className="text-3xl md:text-5xl font-bold tracking-tighter uppercase" style={{ fontFamily: 'Copperplate, "Copperplate Gothic Light", serif' }}>BuildStates</span>
         </Link>
 
         {/* <CHANGE> Single button pointing to contact section */}

@@ -12,7 +12,7 @@ export function Footer() {
             <div className="md:col-span-5">
               <Link href="/" className="flex items-center gap-2 group mb-4">
                 
-                <span className="font-display text-3xl font-bold">BuildStates</span>
+                <span className="text-3xl font-bold" style={{ fontFamily: 'Copperplate, "Copperplate Gothic Light", serif' }}>BuildStates</span>
               </Link>
               <p className="text-muted-foreground text-sm max-w-sm leading-relaxed">
                 We don&apos;t ship websites. We construct digital property. Building solid foundations for startups and founders who refuse to settle for generic.
@@ -50,7 +50,7 @@ export function Footer() {
                   className="flex items-center gap-2 text-muted-foreground hover:text-primary text-sm transition-colors group"
                 >
                   <Mail size={16} className="text-primary" />
-                  <span>work.buildstates@gmial.com</span>
+                  <span>work.buildstates@gmail.com</span>
                 </a>
                 <div className="flex gap-3 pt-2">
                   {[
