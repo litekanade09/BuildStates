@@ -7,22 +7,30 @@ import { CaseStudiesGrid } from "@/components/case-studies/case-studies-grid"
 import { ContactForm } from "@/components/contact/contact-form"
 import { ScrollAnimation } from "@/components/ui/scroll-animation"
 
+// [NEW] Added comprehensive documentation for the main page layout assembly
 export default function HomePage() {
   return (
-    <main className="min-h-screen bg-background grain-texture">
+    // [NEW] The main wrapper includes the global grain texture and ensures scrolling behavior works.
+    <main className="min-h-screen bg-background grain-texture relative overflow-x-hidden selection:bg-primary/30 selection:text-foreground">
+      {/* Dynamic Glassmorphism Navigation */}
       <Navigation />
 
-      {/* Hero Section */}
+      {/* Primary Hero Layout with advanced Framer Motion Elements */}
       <Hero />
 
-      {/* Foundations Section */}
-      <section id="foundations" className="py-24 border-t border-border/30">
+      {/* [NEW] The rest of the body sections are separated by structural borders, acting like individual foundation layers */}
+      
+      {/* Foundations Section: Explaining the methodology */}
+      <section id="foundations" className="py-32 border-t border-border/40 relative">
         <ScrollAnimation>
-          <div className="container mx-auto px-4 lg:px-8 mb-16">
+          {/* Decorative architectural line connecting sections */}
+          <div className="absolute top-0 left-1/2 -ml-[1px] w-[2px] h-24 bg-gradient-to-b from-primary/50 to-transparent opacity-50" />
+          
+          <div className="container mx-auto px-4 lg:px-8 mb-20 relative z-10 mt-12">
             <div className="max-w-3xl mx-auto text-center">
-              <span className="text-xs font-bold uppercase tracking-widest text-primary mb-4 block">Our Methodology</span>
-              <h2 className="font-display text-4xl md:text-6xl font-bold mb-6">Foundations</h2>
-              <p className="text-muted-foreground text-lg leading-relaxed">
+              <span className="text-sm font-bold uppercase tracking-widest text-primary mb-4 block font-display">Our Methodology</span>
+              <h2 className="font-display text-5xl md:text-6xl font-bold mb-6 tracking-tight text-foreground">Foundations</h2>
+              <p className="text-muted-foreground text-xl leading-relaxed">
                 Every exceptional digital product begins with a solid foundation. Our four-phase construction process
                 ensures that your vision is transformed into a robust, scalable, and beautiful digital experience.
               </p>

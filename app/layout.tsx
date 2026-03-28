@@ -1,16 +1,19 @@
 import type { Metadata } from 'next'
-import { Inter, Space_Grotesk } from 'next/font/google'
+// [NEW] Modern, premium typography selection for the architectural theme
+import { Plus_Jakarta_Sans, Outfit } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
-const inter = Inter({ 
+// [NEW] Configure Plus Jakarta Sans for highly readable, geometric body text
+const jakarta = Plus_Jakarta_Sans({ 
   subsets: ["latin"],
-  variable: '--font-inter'
+  variable: '--font-jakarta'
 })
 
-const spaceGrotesk = Space_Grotesk({ 
+// [NEW] Configure Outfit for bold, architectural headings and display text
+const outfit = Outfit({ 
   subsets: ["latin"],
-  variable: '--font-space-grotesk'
+  variable: '--font-outfit'
 })
 
 export const metadata: Metadata = {
@@ -29,7 +32,9 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable}`}>
+    // [NEW] Apply custom CSS variables for our new font families to the html element
+    <html lang="en" className={`${jakarta.variable} ${outfit.variable}`}>
+      {/* [NEW] Apply standard antialiasing for smoother premium font rendering */}
       <body className="font-sans antialiased">
         {children}
         <Analytics />

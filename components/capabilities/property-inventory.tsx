@@ -28,16 +28,20 @@ export function PropertyInventory() {
   return (
     <section className="py-24">
       <div className="container mx-auto px-4 lg:px-8">
-        {/* Blueprint Container */}
+        {/* Blueprint Container with animated border beam */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="relative bg-card/50 backdrop-blur-sm p-8 md:p-12 rounded-lg"
+          className="relative p-[1px] rounded-lg overflow-hidden group"
         >
-          {/* Blueprint Grid Background */}
-          <div className="absolute inset-0 bg-blueprint opacity-5 rounded-lg" />
+          {/* Animated Magic Border Sweep */}
+          <div className="absolute inset-[-600%] animate-[spin_6s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,transparent_80%,oklch(0.65_0.19_237)_100%)] opacity-30 group-hover:opacity-70 transition-opacity duration-700" />
+          
+          <div className="relative bg-card/60 backdrop-blur-md p-8 md:p-12 rounded-lg w-full h-full">
+            {/* Blueprint Grid Background */}
+            <div className="absolute inset-0 bg-blueprint opacity-5 rounded-lg pointer-events-none" />
           
           {/* Blueprint Header */}
           <div className="relative mb-12 pb-6 border-b border-border/30">
@@ -103,10 +107,11 @@ export function PropertyInventory() {
           </motion.div>
 
           {/* Blueprint Corner Markers */}
-          <div className="absolute top-4 left-4 w-6 h-6 border-t-2 border-l-2 border-primary/30" />
-          <div className="absolute top-4 right-4 w-6 h-6 border-t-2 border-r-2 border-primary/30" />
-          <div className="absolute bottom-4 left-4 w-6 h-6 border-b-2 border-l-2 border-primary/30" />
-          <div className="absolute bottom-4 right-4 w-6 h-6 border-b-2 border-r-2 border-primary/30" />
+          <div className="absolute top-4 left-4 w-6 h-6 border-t-2 border-l-2 border-primary/40 transition-colors group-hover:border-primary" />
+          <div className="absolute top-4 right-4 w-6 h-6 border-t-2 border-r-2 border-primary/40 transition-colors group-hover:border-primary" />
+          <div className="absolute bottom-4 left-4 w-6 h-6 border-b-2 border-l-2 border-primary/40 transition-colors group-hover:border-primary" />
+          <div className="absolute bottom-4 right-4 w-6 h-6 border-b-2 border-r-2 border-primary/40 transition-colors group-hover:border-primary" />
+          </div>
         </motion.div>
       </div>
     </section>

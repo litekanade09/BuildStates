@@ -1,20 +1,38 @@
 "use client"
 
 import Link from "next/link"
-import { Building2 } from "lucide-react"
+import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 
 export function Navigation() {
   return (
-    // <CHANGE> Removed scrolled state and kept navigation transparent/minimal
-    <nav className="fixed top-0 w-full z-50 h-20 border-b border-transparent bg-background/80 backdrop-blur-sm">
+    // [NEW] Added robust glassmorphism effects and structural comments
+    <nav className="fixed top-0 w-full z-50 h-20 border-b border-border/40 bg-background/70 backdrop-blur-md supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto px-6 h-full flex items-center justify-between">
+        
+        {/* [NEW] Animated Logo Link integrated with Framer Motion */}
         <Link href="/" className="flex items-center gap-2 group">
-          
-          <span className="text-3xl md:text-5xl font-bold tracking-tighter uppercase" style={{ fontFamily: 'Copperplate, "Copperplate Gothic Light", serif' }}>BuildStates</span>
+          <motion.span 
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            className="text-2xl md:text-3xl font-bold tracking-tighter uppercase text-foreground group-hover:text-primary transition-colors" 
+            style={{ fontFamily: 'Copperplate, "Copperplate Gothic Light", serif' }}
+          >
+            BuildStates
+          </motion.span>
         </Link>
 
-        {/* <CHANGE> Single button pointing to contact section */}
+        {/* [NEW] Animated Call To Action Button */}
+        <motion.div
+           initial={{ opacity: 0, x: 20 }}
+           animate={{ opacity: 1, x: 0 }}
+           transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
+        >
+          <Button asChild variant="default" className="font-semibold shadow-lg shadow-primary/20 transition-all hover:scale-105 active:scale-95">
+            <Link href="#contact">Build Now</Link>
+          </Button>
+        </motion.div>
         
       </div>
     </nav>
