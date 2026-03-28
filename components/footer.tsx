@@ -116,13 +116,25 @@ export function Footer() {
             <div className="space-y-4">
               <motion.a
                 variants={item}
-                href="mailto:work.buildstates@gmail.com"
+                href="mailto:hello@buildstates.com"
                 className="flex items-center gap-3 text-muted-foreground hover:text-primary text-base transition-colors group"
               >
                 <div className="w-8 h-8 rounded bg-background border border-border/50 flex items-center justify-center group-hover:border-primary/50 transition-colors">
                   <Mail size={14} className="text-primary" />
                 </div>
-                <span>work.buildstates@gmail.com</span>
+                <span>hello@buildstates.com</span>
+              </motion.a>
+              <motion.a
+                variants={item}
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://calendly.com/"
+                className="flex items-center gap-3 text-muted-foreground hover:text-primary text-base transition-colors group"
+              >
+                <div className="w-8 h-8 rounded bg-background border border-border/50 flex items-center justify-center group-hover:border-primary/50 transition-colors">
+                  <span className="text-primary font-bold text-lg leading-none mt-[-2px]">C</span>
+                </div>
+                <span>Schedule a Meeting</span>
               </motion.a>
               <motion.div variants={item} className="pt-4 text-sm text-muted-foreground/60">
                 Operating digitally worldwide.<br/>

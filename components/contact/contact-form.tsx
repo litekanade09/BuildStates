@@ -3,7 +3,7 @@
 import type React from "react"
 
 import { useState } from "react"
-import { motion } from "motion/react"
+import { motion, AnimatePresence } from "motion/react"
 import emailjs from "@emailjs/browser"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -79,11 +79,18 @@ export function ContactForm() {
     )
   }
 
+  // Define transition variables for smooth sliding
+  const slideVariants = {
+    initial: { opacity: 0, x: 20 },
+    animate: { opacity: 1, x: 0 },
+    exit: { opacity: 0, x: -20 },
+  }
+
   return (
-    <form onSubmit={handleSubmit} className="space-y-8 relative z-10">
+    <form onSubmit={handleSubmit} className="space-y-8 relative z-10 overflow-hidden">
       {/* Progress Header */}
       <div className="flex items-center justify-between mb-8">
-        <span className="text-xs font-bold uppercase tracking-widest text-primary">
+        <span className="text-xs font-bold uppercase tracking-widest text-primary font-display">
           Building Request: Step {step} of 3
         </span>
         <div className="flex gap-1">
@@ -93,113 +100,140 @@ export function ContactForm() {
         </div>
       </div>
 
-      {step === 1 && (
-        <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="space-y-6">
-          <div className="space-y-2">
-            <Label htmlFor="name" className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
-              Full Name
-            </Label>
-            <Input
-              id="name"
-              placeholder="your name"
-              className="bg-background"
-              required
-              value={formData.name}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="email" className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
-              Email Address
-            </Label>
-            <Input
-              id="email"
-              type="email"
-              placeholder="your email"
-              className="bg-background"
-              required
-              value={formData.email}
-              onChange={handleChange}
-            />
-          </div>
-          <Button type="button" onClick={() => setStep(2)} className="w-full font-bold h-12">
-            Continue to Specifications
-          </Button>
-        </motion.div>
-      )}
+      <AnimatePresence mode="wait">
+        {step === 1 && (
+          <motion.div 
+            key="step1"
+            variants={slideVariants}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            transition={{ duration: 0.3 }}
+            className="space-y-6"
+          >
+            <div className="space-y-2">
+              <Label htmlFor="name" className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
+                Full Name
+              </Label>
+              <Input
+                id="name"
+                placeholder="your name"
+                className="bg-background focus:border-primary/50 transition-colors"
+                required
+                value={formData.name}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="email" className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
+                Email Address
+              </Label>
+              <Input
+                id="email"
+                type="email"
+                placeholder="your email"
+                className="bg-background focus:border-primary/50 transition-colors"
+                required
+                value={formData.email}
+                onChange={handleChange}
+              />
+            </div>
+            <Button type="button" onClick={() => setStep(2)} className="w-full font-bold h-12 shadow-md hover:shadow-primary/20 transition-all hover:-translate-y-0.5">
+              Continue to Specifications
+            </Button>
+          </motion.div>
+        )}
 
-      {step === 2 && (
-        <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="space-y-6">
-          <div className="space-y-2">
-            <Label htmlFor="company" className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
-              Startup Name
-            </Label>
-            <Input
-              id="company"
-              placeholder="company name"
-              className="bg-background"
-              value={formData.company}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="mobile" className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
-              Mobile Number
-            </Label>
-            <Input
-              id="mobile"
-              type="tel"
-              placeholder="your mobile number"
-              className="bg-background"
-              required
-              value={formData.mobile}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="flex gap-4">
-            <Button variant="outline" onClick={() => setStep(1)} className="flex-1 font-bold h-12 bg-transparent">
-              Back
-            </Button>
-            <Button type="button" onClick={() => setStep(3)} className="flex-1 font-bold h-12">
-              Next Step
-            </Button>
-          </div>
-        </motion.div>
-      )}
+        {step === 2 && (
+          <motion.div 
+            key="step2"
+            variants={slideVariants}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            transition={{ duration: 0.3 }}
+            className="space-y-6"
+          >
+            <div className="space-y-2">
+              <Label htmlFor="company" className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
+                Startup Name
+              </Label>
+              <Input
+                id="company"
+                placeholder="company name"
+                className="bg-background focus:border-primary/50 transition-colors"
+                value={formData.company}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="mobile" className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
+                Mobile Number
+              </Label>
+              <Input
+                id="mobile"
+                type="tel"
+                placeholder="your mobile number"
+                className="bg-background focus:border-primary/50 transition-colors"
+                required
+                value={formData.mobile}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="flex gap-4">
+              <Button variant="outline" onClick={() => setStep(1)} className="flex-1 font-bold h-12 bg-transparent hover:bg-muted/50 transition-colors">
+                Back
+              </Button>
+              <Button type="button" onClick={() => setStep(3)} className="flex-1 font-bold h-12 shadow-md hover:shadow-primary/20 transition-all hover:-translate-y-0.5">
+                Next Step
+              </Button>
+            </div>
+          </motion.div>
+        )}
 
-      {step === 3 && (
-        <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="space-y-6">
-          <div className="space-y-2">
-            <Label htmlFor="details" className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
-              What are you building?
-            </Label>
-            <Textarea
-              id="details"
-              placeholder="Tell us about the digital property you want to construct..."
-              className="bg-background min-h-[150px]"
-              required
-              value={formData.details}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="flex gap-4">
-            <Button variant="outline" onClick={() => setStep(2)} className="flex-1 font-bold h-12 bg-transparent">
-              Back
-            </Button>
-            <Button type="submit" className="flex-1 font-bold h-12" disabled={isSending}>
-              {isSending ? (
-                <>
-                  <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Sending...
-                </>
-              ) : (
-                <>
-                  <Hammer className="mr-2" size={18} /> Break Ground
-                </>
-              )}
-            </Button>
-          </div>
-        </motion.div>
-      )}
+        {step === 3 && (
+          <motion.div 
+            key="step3"
+            variants={slideVariants}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            transition={{ duration: 0.3 }}
+            className="space-y-6"
+          >
+            <div className="space-y-2">
+              <Label htmlFor="details" className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
+                What are you building?
+              </Label>
+              <Textarea
+                id="details"
+                placeholder="Tell us about the digital property you want to construct..."
+                className="bg-background min-h-[150px] focus:border-primary/50 transition-colors"
+                required
+                value={formData.details}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="flex gap-4">
+              <Button variant="outline" onClick={() => setStep(2)} className="flex-1 font-bold h-12 bg-transparent hover:bg-muted/50 transition-colors">
+                Back
+              </Button>
+              <Button type="submit" className="flex-1 font-bold h-12 shadow-md shadow-primary/20 hover:shadow-primary/40 transition-all hover:-translate-y-0.5" disabled={isSending}>
+                {isSending ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Sending...
+                  </>
+                ) : (
+                  <>
+                    <Hammer className="mr-2" size={18} /> Break Ground
+                  </>
+                )}
+              </Button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </form>
   )
 }
+

@@ -65,11 +65,11 @@ export function Hero() {
               BuildStates designs and engineers scalable, high-conversion platforms for ambitious startups. We lay the architectural foundations for your digital future.
             </motion.p>
 
-            <motion.div variants={itemVariant} className="flex flex-col sm:flex-row items-start gap-4">
-              {/* [NEW] Magic Border Button (21st.dev style) */}
+            <motion.div variants={itemVariant} className="flex flex-col sm:flex-row items-center sm:items-start gap-4 w-full">
+              {/* [NEW] Magic Border Button (21st.dev style) - Full width on mobile */}
               <Link 
                 href="/#contact" 
-                className="relative inline-flex h-14 min-w-[200px] overflow-hidden rounded-md p-[1px] shadow-xl shadow-primary/20 hover:shadow-primary/40 transition-all hover:-translate-y-1 group"
+                className="relative inline-flex h-14 w-full sm:w-auto sm:min-w-[200px] overflow-hidden rounded-md p-[1px] shadow-xl shadow-primary/20 hover:shadow-primary/40 transition-all hover:-translate-y-1 group"
               >
                 <span className="absolute inset-[-1000%] animate-[spin_3s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,transparent_40%,oklch(0.82_0.15_85)_100%)] opacity-70 group-hover:opacity-100 transition-opacity duration-300" />
                 <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-[5px] bg-background/95 px-8 text-base font-bold text-foreground backdrop-blur-3xl transition-colors group-hover:bg-background/80">
@@ -80,7 +80,7 @@ export function Hero() {
                 asChild
                 variant="outline"
                 size="lg"
-                className="h-14 px-8 text-base font-bold min-w-[200px] bg-background/50 backdrop-blur-md border-border/50 hover:bg-muted/50 transition-all hover:-translate-y-1"
+                className="h-14 w-full sm:w-auto px-8 text-base font-bold sm:min-w-[200px] bg-background/50 backdrop-blur-md border-border/50 hover:bg-muted/50 transition-all hover:-translate-y-1"
               >
                 <Link href="/#case-studies">Tour Properties</Link>
               </Button>
