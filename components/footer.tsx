@@ -61,8 +61,8 @@ export function Footer() {
             </p>
             <div className="flex gap-4">
               {[
-                { icon: Twitter, href: '#', label: 'Twitter' },
-                { icon: Linkedin, href: '#', label: 'LinkedIn' },
+                { icon: Twitter, href: 'https://x.com/BuildState', label: 'Twitter' },
+                { icon: Linkedin, href: 'https://www.linkedin.com/in/build-states-47a0173a4/', label: 'LinkedIn' },
                 { icon: Github, href: '#', label: 'GitHub' },
               ].map((social) => (
                 <a
@@ -117,13 +117,13 @@ export function Footer() {
             <div className="space-y-4">
               <motion.a
                 variants={item}
-                href="mailto:hello@buildstates.com"
+                href="mailto:work.buildstates@gmail.com"
                 className="flex items-center gap-3 text-muted-foreground hover:text-primary text-base transition-colors group"
               >
                 <div className="w-8 h-8 rounded bg-background border border-border/50 flex items-center justify-center group-hover:border-primary/50 transition-colors">
                   <Mail size={14} className="text-primary" />
                 </div>
-                <span>hello@buildstates.com</span>
+                <span>work.buildstates@gmail.com</span>
               </motion.a>
               <motion.a
                 variants={item}
