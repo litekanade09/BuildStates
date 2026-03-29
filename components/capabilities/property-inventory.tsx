@@ -26,7 +26,7 @@ const services = [
 
 export function PropertyInventory() {
   return (
-    <section className="py-24">
+    <section className="pt-16 pb-24" id="capabilities">
       <div className="container mx-auto px-4 lg:px-8">
         {/* Blueprint Container with animated border beam */}
         <motion.div
@@ -74,14 +74,14 @@ export function PropertyInventory() {
                   <div className="hidden md:block absolute top-0 -right-6 w-px h-full bg-border/30" />
                 )}
 
-                <div className="space-y-4">
+                <div className="space-y-4 p-5 -ml-5 rounded-xl border border-transparent hover:border-border/50 hover:bg-muted/10 transition-all duration-300 group/service cursor-default">
                   {/* Icon */}
-                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover/service:bg-primary/20 group-hover/service:scale-110 transition-all duration-300">
                     <service.icon size={24} />
                   </div>
 
                   {/* Title */}
-                  <h4 className="font-display text-xl font-bold leading-tight">{service.title}</h4>
+                  <h4 className="font-display text-xl font-bold leading-tight group-hover/service:text-primary transition-colors">{service.title}</h4>
 
                   {/* Description */}
                   <p className="text-muted-foreground text-sm leading-relaxed">{service.description}</p>
@@ -90,20 +90,19 @@ export function PropertyInventory() {
             ))}
           </div>
 
-          {/* Bottom Specifications */}
+          {/* Bottom Specifications converted to Badges */}
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.6, duration: 0.8 }}
-            className="relative mt-12 pt-8 border-t border-border/30 space-y-3 text-center"
+            className="relative mt-8 pt-8 border-t border-border/30 z-10"
           >
-            <p className="text-sm text-muted-foreground font-medium">
-              Code Development · Low Code Development · No Code Development
-            </p>
-            <p className="text-sm text-muted-foreground font-medium">
-              Responsive · Modern Design · Scalable · Animations
-            </p>
+            <div className="flex flex-wrap justify-center gap-3">
+              <span className="px-4 py-2 bg-background/90 text-[10px] md:text-xs font-bold uppercase tracking-widest text-primary border border-primary/30 rounded-full whitespace-nowrap shadow-sm">Code Development</span>
+              <span className="px-4 py-2 bg-background/90 text-[10px] md:text-xs font-bold uppercase tracking-widest text-foreground border border-border/60 rounded-full whitespace-nowrap shadow-sm">Low Code Development</span>
+              <span className="px-4 py-2 bg-background/90 text-[10px] md:text-xs font-bold uppercase tracking-widest text-foreground border border-border/60 rounded-full whitespace-nowrap shadow-sm">No Code</span>
+            </div>
           </motion.div>
 
           {/* Blueprint Corner Markers */}

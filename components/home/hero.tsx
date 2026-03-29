@@ -28,7 +28,7 @@ export function Hero() {
     <section className="relative min-h-[90vh] flex items-center pt-32 pb-20 overflow-hidden bg-background">
       {/* [NEW] Dynamic background components: Blueprint grid and animated glowing orbs */}
       <div className="absolute inset-0 bg-blueprint opacity-20 pointer-events-none" />
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/10 rounded-full blur-3xl opacity-50 translate-x-1/2 -translate-y-1/4 pointer-events-none" />
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[100px] opacity-70 translate-x-1/2 -translate-y-1/4 pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-secondary/10 rounded-full blur-3xl opacity-40 -translate-x-1/4 translate-y-1/4 pointer-events-none" />
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/50 to-background pointer-events-none" />
 

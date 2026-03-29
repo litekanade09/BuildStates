@@ -43,17 +43,18 @@ export function Footer() {
               Let&apos;s engineer your next digital property with uncompromising precision.
             </p>
           </div>
-          <Link href="#contact" className="group inline-flex items-center gap-3 text-2xl font-bold hover:text-primary transition-colors text-foreground">
+          <Link href="/#contact" className="group inline-flex items-center gap-3 mt-6 font-display text-xl md:text-2xl font-bold bg-primary/10 border border-primary/20 text-primary px-8 py-4 rounded-[5px] hover:bg-primary/20 hover:border-primary/40 transition-all text-foreground">
             Start the Conversation
-            <ArrowUpRight className="w-8 h-8 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+            <ArrowUpRight className="w-6 h-6 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
           </Link>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-8 border-t border-border/40 pt-16">
           {/* Brand Section */}
           <div className="md:col-span-5">
-            <Link href="/" className="flex items-center gap-2 group mb-6">
+            <Link href="/" className="flex flex-col items-start gap-1 group mb-6">
               <span className="text-4xl font-bold tracking-tighter uppercase text-foreground" style={{ fontFamily: 'Copperplate, "Copperplate Gothic Light", serif' }}>BuildStates</span>
+              <span className="text-xs font-bold text-muted-foreground uppercase tracking-widest mt-1">Est. 2024 · Built for Founders</span>
             </Link>
             <p className="text-muted-foreground text-sm max-w-sm leading-relaxed mb-8">
               We don&apos;t ship websites. We construct digital property. Building solid foundations for startups and founders who refuse to settle for generic.
@@ -68,9 +69,9 @@ export function Footer() {
                   key={social.label}
                   href={social.href}
                   aria-label={social.label}
-                  className="w-10 h-10 rounded-full bg-background border border-border/50 flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/50 transition-all hover:-translate-y-1"
+                  className="w-12 h-12 rounded-full bg-background border border-border/50 flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/50 transition-all hover:-translate-y-1"
                 >
-                  <social.icon size={18} />
+                  <social.icon size={24} />
                 </a>
               ))}
             </div>
@@ -128,7 +129,7 @@ export function Footer() {
                 variants={item}
                 target="_blank"
                 rel="noopener noreferrer"
-                href="https://calendly.com/"
+                href="https://calendly.com/work-buildstates/30min"
                 className="flex items-center gap-3 text-muted-foreground hover:text-primary text-base transition-colors group"
               >
                 <div className="w-8 h-8 rounded bg-background border border-border/50 flex items-center justify-center group-hover:border-primary/50 transition-colors">

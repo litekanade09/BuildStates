@@ -4,7 +4,6 @@ import type React from "react"
 
 import { useState } from "react"
 import { motion, AnimatePresence } from "motion/react"
-import emailjs from "@emailjs/browser"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -32,34 +31,22 @@ export function ContactForm() {
     e.preventDefault()
     setIsSending(true)
 
-    const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID
-    const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID
-    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
-
-    if (!serviceId || !templateId || !publicKey) {
-      console.error("EmailJS environment variables are missing.")
-      alert("Configuration error: Email service is not properly set up.")
-      setIsSending(false)
-      return
-    }
-
     try {
-      await emailjs.send(
-          serviceId,
-          templateId,
-                {
-    from_name: formData.name,
-    from_email: formData.email,
-    company_name: formData.company,  // Fixed
-    phone_number: formData.mobile,   // Fixed
-    message: formData.details,       // Fixed
-  },
-  publicKey
-)
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      })
+
+      if (!res.ok) {
+        const errorData = await res.json()
+        throw new Error(errorData.error?.message || errorData.error || "Failed to send message")
+      }
+
       setIsSubmitted(true)
     } catch (error) {
-      console.error("Failed to send email:", error)
-      alert("Failed to send email. Please try again.")
+      console.error("Failed to submit form:", error)
+      alert("Failed to send your request. Please try again later or email us directly.")
     } finally {
       setIsSending(false)
     }
@@ -93,9 +80,9 @@ export function ContactForm() {
         <span className="text-xs font-bold uppercase tracking-widest text-primary font-display">
           Building Request: Step {step} of 3
         </span>
-        <div className="flex gap-1">
+        <div className="flex gap-2">
           {[1, 2, 3].map((s) => (
-            <div key={s} className={`h-1 w-8 transition-colors ${s <= step ? "bg-primary" : "bg-border"}`} />
+            <div key={s} className={`h-2 w-12 rounded-full transition-colors ${s <= step ? "bg-primary" : "bg-border"}`} />
           ))}
         </div>
       </div>
@@ -214,21 +201,28 @@ export function ContactForm() {
                 onChange={handleChange}
               />
             </div>
-            <div className="flex gap-4">
-              <Button variant="outline" onClick={() => setStep(2)} className="flex-1 font-bold h-12 bg-transparent hover:bg-muted/50 transition-colors">
-                Back
-              </Button>
-              <Button type="submit" className="flex-1 font-bold h-12 shadow-md shadow-primary/20 hover:shadow-primary/40 transition-all hover:-translate-y-0.5" disabled={isSending}>
-                {isSending ? (
-                  <>
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Sending...
-                  </>
-                ) : (
-                  <>
-                    <Hammer className="mr-2" size={18} /> Break Ground
-                  </>
-                )}
-              </Button>
+            <div className="flex flex-col gap-4">
+              <div className="flex gap-4">
+                <Button variant="outline" onClick={() => setStep(2)} className="flex-1 font-bold h-12 bg-transparent hover:bg-muted/50 transition-colors">
+                  Back
+                </Button>
+                <Button type="submit" className="flex-1 font-bold h-12 shadow-md shadow-primary/20 hover:shadow-primary/40 transition-all hover:-translate-y-0.5" disabled={isSending}>
+                  {isSending ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Sending...
+                    </>
+                  ) : (
+                    <>
+                      <Hammer className="mr-2" size={18} /> Break Ground
+                    </>
+                  )}
+                </Button>
+              </div>
+              
+              {/* Trust Signal */}
+              <p className="text-xs text-center text-muted-foreground mt-2 flex items-center justify-center gap-1.5">
+                <span className="text-primary">🔒</span> We reply within 24 hours. No spam, ever.
+              </p>
             </div>
           </motion.div>
         )}

@@ -67,7 +67,7 @@ function SpotlightCard({ children, className = "" }: { children: React.ReactNode
 
 export function ConstructionPhases() {
   return (
-    <section className="py-24">
+    <section className="pt-16 pb-24" id="foundations">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {phases.map((phase, index) => (
@@ -79,7 +79,7 @@ export function ConstructionPhases() {
               transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.1 }}
               className="h-full group"
             >
-              <SpotlightCard className="h-full flex flex-col p-8">
+              <SpotlightCard className={`h-full flex flex-col p-8 ${index === 0 ? "border-primary/50" : ""}`}>
                 {/* Phase Number */}
                 <span className="font-mono text-sm font-bold text-muted-foreground mb-6 transition-colors group-hover:text-primary">
                   {phase.phase}
@@ -91,7 +91,7 @@ export function ConstructionPhases() {
                 </h3>
 
                 {/* Description */}
-                <p className="text-muted-foreground text-base leading-relaxed flex-1 transition-colors group-hover:text-muted-foreground/90">
+                <p className="text-muted-foreground/90 text-lg leading-relaxed font-medium flex-1 transition-colors group-hover:text-foreground/90">
                   {phase.description}
                 </p>
               </SpotlightCard>
